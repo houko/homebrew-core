@@ -126,8 +126,8 @@ class OpensslAT3 < Formula
     system "make", "install", "MANDIR=#{man}", "MANSUFFIX=ssl"
     # AF_ALG support isn't always enabled (e.g. some containers), which breaks the tests.
     # AF_ALG is a kernel feature and failures are unlikely to be issues with the formula.
-    # `test_quick_tserver` intermittently fails on CI. 
-   # It has been reported upstream with no resolution in over a year, so we skip it. 
+    # `test_quick_tserver` intermittently fails on CI.
+    # It has been reported upstream with no resolution in over a year, so we skip it.
     system "make", "HARNESS_JOBS=#{ENV.make_jobs}", "test", "TESTS=-test_afalg,-test_quic_tserver"
 
     # Prevent `brew` from pruning the `certs` and `private` directories.
